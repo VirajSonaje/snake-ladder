@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/snake-ladder/static/css/main.28cc9a5b.css",
-    "main.js": "/snake-ladder/static/js/main.f6639ca2.js",
+    "main.css": "/snake-ladder/static/css/main.b6992801.css",
+    "main.js": "/snake-ladder/static/js/main.deb383c9.js",
     "static/js/453.a7b3765f.chunk.js": "/snake-ladder/static/js/453.a7b3765f.chunk.js",
     "static/media/ladder.png": "/snake-ladder/static/media/ladder.5b5d1947897f68c555ae.png",
     "index.html": "/snake-ladder/index.html",
-    "main.28cc9a5b.css.map": "/snake-ladder/static/css/main.28cc9a5b.css.map",
-    "main.f6639ca2.js.map": "/snake-ladder/static/js/main.f6639ca2.js.map",
+    "main.b6992801.css.map": "/snake-ladder/static/css/main.b6992801.css.map",
+    "main.deb383c9.js.map": "/snake-ladder/static/js/main.deb383c9.js.map",
     "453.a7b3765f.chunk.js.map": "/snake-ladder/static/js/453.a7b3765f.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.28cc9a5b.css",
-    "static/js/main.f6639ca2.js"
+    "static/css/main.b6992801.css",
+    "static/js/main.deb383c9.js"
   ]
 }
