@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/snake-ladder/static/css/main.b6992801.css",
-    "main.js": "/snake-ladder/static/js/main.1de13fcf.js",
+    "main.css": "/snake-ladder/static/css/main.b49daab6.css",
+    "main.js": "/snake-ladder/static/js/main.f8ce2a20.js",
     "static/js/453.a7b3765f.chunk.js": "/snake-ladder/static/js/453.a7b3765f.chunk.js",
     "static/media/ladder.png": "/snake-ladder/static/media/ladder.5b5d1947897f68c555ae.png",
     "static/media/Snake.png": "/snake-ladder/static/media/Snake.b511db564387decc94d6.png",
     "index.html": "/snake-ladder/index.html",
-    "main.b6992801.css.map": "/snake-ladder/static/css/main.b6992801.css.map",
-    "main.1de13fcf.js.map": "/snake-ladder/static/js/main.1de13fcf.js.map",
+    "main.b49daab6.css.map": "/snake-ladder/static/css/main.b49daab6.css.map",
+    "main.f8ce2a20.js.map": "/snake-ladder/static/js/main.f8ce2a20.js.map",
     "453.a7b3765f.chunk.js.map": "/snake-ladder/static/js/453.a7b3765f.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.b6992801.css",
-    "static/js/main.1de13fcf.js"
+    "static/css/main.b49daab6.css",
+    "static/js/main.f8ce2a20.js"
   ]
 }
