@@ -55,7 +55,7 @@ function Game(){
     const [reachedItemFlag, setReachedItemFlag] = useState(false);
     const animStartObj = useRef(null);
     const chance = useRef(0);
-    let chanceString = `Start Playing Player ${chance.current+1}`;
+    let chanceString = `Player ${chance.current+1}'s chance`;
     const diceRef = useRef(null);
     const imageRef = useRef(null);
   let snlobj = {
@@ -87,7 +87,7 @@ async function roll(){
 
       }, 500);
       chance.current = await updateChance(chance.current)
-      chanceString = `Start Playing Player ${chance.current+1}`;
+      chanceString = `Player ${chance.current+1}'s chance`;
       console.log(nextPlayerPos)
     }
 
