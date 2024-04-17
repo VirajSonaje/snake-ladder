@@ -10,6 +10,7 @@ export const playerContext = createContext();
 export const ladderContext = createContext();
 export const refContext = createContext();
 export const diceRefContext = createContext();
+export const imageRefContext = createContext();
 const numberOfPlayers = 3;
 
 const ladderMap = new Map([
@@ -39,7 +40,7 @@ const snakeMap = new Map([
 function Header(){
   return(
   
-      <div className='translate-y-1/4 mb-4'>
+      <div className='translate-y-1/4 translate-x-10 mb-4'>
         <h1 className="text-white font-unbounded text-xl -mb-2 sm:text-3xl">Snakes and Ladders</h1>
         <hr className='border-2 border-white border-dotted -translate-y-full' />
       </div>
@@ -49,35 +50,35 @@ function Header(){
 
 function Game(){
     const nodeRef = useRef(Array(numberOfPlayers));
-    const [diceNum, setDiceNum] = useState(6);
+    const [diceNum, setDiceNum] = useState(null);
     const [player, setPlayer] = useState(Array(numberOfPlayers).fill(1));
     const [reachedItemFlag, setReachedItemFlag] = useState(false);
     const animStartObj = useRef(null);
     const chance = useRef(0);
     let chanceString = `Start Playing Player ${chance.current+1}`;
     const diceRef = useRef(null);
+    const imageRef = useRef(null);
   let snlobj = {
     ladders: ladderMap,
     snakes: snakeMap
   };
 
+async function diceAnim(diceRoll){
+  var tl = gsap.timeline();
+  setDiceNum(diceRoll);
+  await tl.to(diceRef.current, {rotateX:"270deg", rotateY:"360deg", transformOrigin:"60% 100%", duration:1.5, transition:"ease-in-out"});
+  tl.to(diceRef.current, {rotateX:"0deg", rotateY:"0deg", transformOrigin:"60% 100%", duration:2, delay:1});
+  setTimeout(()=>{
+    setDiceNum(null);
+  },1200)
+}
+
 async function roll(){
       
       let [diceRoll, nextPlayerPos] = await movePlayer(player, chance.current);
       animStartObj.current = await getPlayerCoords(nodeRef.current[chance.current]);
-
-      console.log(diceRef.current);
-      var tl = gsap.timeline();
-      await tl.to(diceRef.current, {rotateX:"180deg", rotateY:"180deg", transformOrigin:"60% 100%", duration:2, transition:"ease-in-out"});
-      tl.to(diceRef.current, {rotateX:"-180deg", rotateY:"-180deg", transformOrigin:"60% 100%", duration:1.7, delay:1});
-      let [diceRoll, nextPlayerPos] = await movePlayer(player);
-      console.log(nodeRef);
-      animStartObj.current = await getPlayerCoords(nodeRef.current);
-
-
-      setDiceNum(diceRoll);
+      diceAnim(diceRoll);
       await setPlayer(nextPlayerPos);
-
       setTimeout(() => {
         if(ladderMap.has(nextPlayerPos[chance.current]) || snakeMap.has(nextPlayerPos[chance.current])){
           animStartObj.current = getPlayerCoords(nodeRef.current[chance.current]);
@@ -85,11 +86,6 @@ async function roll(){
         }
 
       }, 500);
-      setTimeout(() => {  
-        setDiceNum(null);
-    }, 1000);
-      
-
       chance.current = await updateChance(chance.current)
       chanceString = `Start Playing Player ${chance.current+1}`;
       console.log(nextPlayerPos)
@@ -109,7 +105,7 @@ async function roll(){
     function resetGame(){
         chance.current = 0;
         setPlayer(Array(numberOfPlayers).fill(1));
-        setDiceNum(6);
+        setDiceNum(null);
         setReachedItemFlag(false);
     }
     
@@ -158,12 +154,14 @@ async function roll(){
       </refContext.Provider>
 
     <diceRefContext.Provider value={diceRef}>
+    <imageRefContext.Provider value={imageRef}>
     <div className='col-span-12 sm:col-span-4 justify-self-center sm:justify-self-start'>
       <Header/>
       <Dice number={diceNum} onDiceClick={() => roll()}/>
       <Button onButtonClick = {() => resetGame()}></Button>
-      <h2 className='text-white'>{chanceString}</h2>
+      <h2 className='text-white -translate-y-[90px] translate-x-10'>{chanceString}</h2>
     </div> 
+    </imageRefContext.Provider>
     </diceRefContext.Provider>
   </div>
   }
