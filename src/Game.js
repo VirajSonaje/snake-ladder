@@ -5,6 +5,7 @@ import { useState, useEffect, createContext, useRef } from 'react';
 import gsap from "gsap";
 import {useGSAP} from '@gsap/react';
 import Button from './ResetButton';
+import diceAudio from './diceAudio.mp3';
 
 export const playerContext = createContext();
 export const ladderContext = createContext();
@@ -66,6 +67,8 @@ function Game(){
 async function diceAnim(diceRoll){
   var tl = gsap.timeline();
   setDiceNum(diceRoll);
+  var audio = document.getElementById("audio");
+  audio.play();
   await tl.to(diceRef.current, {rotateX:"270deg", rotateY:"360deg", transformOrigin:"60% 100%", duration:1.5, transition:"ease-in-out"});
   tl.to(diceRef.current, {rotateX:"0deg", rotateY:"0deg", transformOrigin:"60% 100%", duration:2, delay:1});
   setTimeout(()=>{
@@ -157,6 +160,7 @@ async function roll(){
     <imageRefContext.Provider value={imageRef}>
     <div className='col-span-12 sm:col-span-4 justify-self-center sm:justify-self-start'>
       <Header/>
+      <audio id="audio" src={diceAudio}></audio>
       <Dice number={diceNum} onDiceClick={() => roll()}/>
       <Button onButtonClick = {() => resetGame()}></Button>
       <h2 className='text-white -translate-y-[90px] translate-x-10'>{chanceString}</h2>
