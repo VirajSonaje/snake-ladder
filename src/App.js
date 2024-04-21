@@ -1,10 +1,11 @@
 import './App.css';
 import Game from './Game';
-
+import React from 'react';
 
 
 
 function App() {
+  
   return (<>
     <div className="text-center bg-black h-screen sm:h-4/5 font-quicksand font-semibold">
       {/* <header className="App-header">

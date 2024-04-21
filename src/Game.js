@@ -6,6 +6,12 @@ import gsap from "gsap";
 import {useGSAP} from '@gsap/react';
 import Button from './ResetButton';
 import diceAudio from './diceAudio.mp3';
+import {
+  Dialog,
+  DialogHeader,
+  DialogBody,
+  DialogFooter,
+} from "@material-tailwind/react";
 
 export const playerContext = createContext();
 export const ladderContext = createContext();
@@ -50,6 +56,8 @@ function Header(){
   }
 
 function Game(){
+  const [open, setOpen] = useState(true);
+  const handleOpen = () => setOpen(!open);
     const nodeRef = useRef(Array(numberOfPlayers));
     const [diceNum, setDiceNum] = useState(null);
     const [player, setPlayer] = useState(Array(numberOfPlayers).fill(1));
@@ -167,6 +175,26 @@ async function roll(){
     </div> 
     </imageRefContext.Provider>
     </diceRefContext.Provider>
+    <Dialog open={open} handler={handleOpen} className='' size='xl' style={{base:{backdrop:{backgroundColor:'white'}}}} animate={{
+          mount: { scale: 1, y: 0 },
+          unmount: { scale: 0.9, y: -100 },
+        }}>
+        <DialogHeader>Its a simple dialog.</DialogHeader>
+        <DialogBody>
+         Hello there
+        </DialogBody>
+        <DialogFooter>
+
+          <button
+            variant="text"
+            color="red"
+            onClick={handleOpen}
+            className="mr-1"
+          >
+            <span>Close</span>
+          </button>
+        </DialogFooter>
+      </Dialog>
   </div>
   }
   
